@@ -20,7 +20,7 @@ class Tarea:
     def titulo(self):
         return self.__titulo
     @property
-    def description(self):
+    def descripcion(self):
         return self.__descripcion
     @property
     def fecha_ingreso(self):
@@ -41,7 +41,9 @@ class Tarea:
     @estado.setter
     def estado(self, estado):
         self.__estado = self.validar_estado(estado)
-
+    @descripcion.setter
+    def descripcion(self, descripcion):
+        self.__descripcion = descripcion
     @id.setter
     def id(self, id):
         self.__id = self.validar_id(id)
@@ -64,21 +66,21 @@ class Tarea:
 
     def validar_fecha_vencimiento(self, fecha_vencimiento):
         try:
-            fecha_vencimiento = datetime.date(fecha_vencimiento)
-            fecha_actual = datetime.date.today()
-            if fecha_vencimiento.date() < fecha_actual:
+            if fecha_vencimiento < datetime.datetime.now().strftime('%Y-%m-%d'):
                 raise ValueError("La fecha de vencimiento no puede ser en el pasado.")
-        except ValueError:
-            raise ValueError("Formato de fecha inválido. Debe ser YYYY-MM-DD.")
+        except ValueError as e:
+            raise ValueError(f"Fecha de vencimiento inválida: {e}")
         return fecha_vencimiento
     
-    def validar_estado(estado):
+    def validar_estado(self, estado):
         if estado not in ["pendiente", "en progreso", "completada"]:
             raise ValueError("Estado inválido. Debe ser 'pendiente', 'en progreso' o 'completada'.")
         return estado
     
     def to_dict(self):
         return {
+            "id": self.__id,
+            "titulo": self.__titulo,
             "descripcion": self.__descripcion,
             "fecha_ingreso": self.__fecha_ingreso,
             "fecha_vencimiento": self.__fecha_vencimiento,
