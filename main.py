@@ -23,7 +23,6 @@ def agregar_tarea(gestion):
     tarea = Tarea(id, titulo, descripcion, fecha_ingreso, fecha_vencimiento, estado)
 
     gestion.agregar_tarea(tarea)
-    print("Tarea agregada correctamente.")
     input("Presione Enter para continuar...")
     
 if __name__ == '__main__':

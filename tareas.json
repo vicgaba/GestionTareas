@@ -1,18 +1,10 @@
-[
-    {
+{
+    "1": {
         "id": "1",
         "titulo": "1",
         "descripcion": "1",
         "fecha_ingreso": "2024-08-04",
         "fecha_vencimiento": "2024-08-05",
         "estado": "pendiente"
-    },
-    {
-        "id": "1",
-        "titulo": "1",
-        "descripcion": "1",
-        "fecha_ingreso": "2024-08-04",
-        "fecha_vencimiento": "2024-08-04",
-        "estado": "pendiente"
     }
-]
+}

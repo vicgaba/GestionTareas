@@ -96,14 +96,22 @@ class GestionTareas:
             with open(self.archivo, 'r') as file:
                 datos = json.load(file)
         except FileNotFoundError:
-            datos = []
+            return{}
+        except Exception as error:
+            raise Exception(f'Error al leer datos del archivo: {error}')
         return datos
     def agregar_tarea(self, tarea):
-        datos = self.leer_datos()
-        datos.append(tarea.to_dict())
-        self.guardar_datos(datos)
-        print("Tarea agregada correctamente.")
-
+        try:
+            datos = self.leer_datos()
+            id = tarea.id      
+            if str(id) not in datos.keys(): #keys = clave, value = valor, item = todo el registro
+                datos[id] = tarea.to_dict()
+                self.guardar_datos(datos)
+                print(f'Tarea con el ID {id} creado correctamente.')
+            else:
+                print(f'Tarea con id {id} ya existe')
+        except Exception as error:
+            print(f'Error inesperado al crear la tarea: {error}')    
     def guardar_datos(self, datos):
         with open(self.archivo, 'w') as file:
             json.dump(datos, file, indent=4)
@@ -112,8 +120,8 @@ class GestionTareas:
         if not datos:
             print("No hay tareas registradas.")
         else:
-            for tarea in datos:
-                print(Tareas(**tarea))
+            for tarea in datos.values():
+                print(tarea['id'] + ' ' + tarea['titulo'] + ' ' + tarea['descripcion'] + ' ' + tarea['fecha_ingreso'] + ' ' + tarea['fecha_vencimiento'] + ' ' + tarea['estado'])
         print("-----------------------------------------------------------------------------")
 
     def eliminar_tarea(self, descripcion):
