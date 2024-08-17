@@ -12,15 +12,7 @@
         "titulo": "2",
         "descripcion": "2",
         "fecha_ingreso": "2024-08-05",
-        "estado": "pendiente",
+        "estado": "en progreso",
         "fecha_vencimiento": "2024-08-06"
-    },
-    "3": {
-        "id": "3",
-        "titulo": "3",
-        "descripcion": "3",
-        "fecha_ingreso": "2024-08-05",
-        "estado": "pendiente",
-        "frecuencia": "semanal"
     }
 }

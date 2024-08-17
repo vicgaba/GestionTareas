@@ -13,7 +13,9 @@ def mostrar_menu():
     print("1. Agregar Tarea Simple")
     print("2. Agregar Tarea Recurrente")
     print("3. Mostrar Tareas")
-    print("4. Salir")
+    print("4. Eliminar Tarea")
+    print("5. Modificar Estado de Tarea")
+    print("6. Salir")
     print('======================================================')
 
 def agregar_tarea_simple(gestion):
@@ -39,6 +41,21 @@ def agregar_tarea_recurrente(gestion):
 
     gestion.agregar_tarea(tarea)
     input("Presione Enter para continuar...")
+
+def eliminar_tarea(gestion):
+    gestion.mostrar_tareas()
+    id = input("Ingrese el ID de la tarea a eliminar: ")
+    gestion.eliminar_tarea(id)
+    gestion.mostrar_tareas()
+    input("Presione Enter para continuar...")
+
+def modificar_estado_tarea(gestion):
+    gestion.mostrar_tareas()
+    id = input("Ingrese el ID de la tarea a modificar: ")
+    estado = input("Ingrese el nuevo estado: ")
+    gestion.modificar_estado_tarea(id, estado)
+    gestion.mostrar_tareas()
+    input("Presione Enter para continuar...")
     
 if __name__ == '__main__':
     archivo_tareas = 'tareas.json'
@@ -57,4 +74,8 @@ if __name__ == '__main__':
             gestion.mostrar_tareas()
             input("Presione Enter para continuar...")
         elif opcion == '4':
+            eliminar_tarea(gestion)
+        elif opcion == '5':
+            modificar_estado_tarea(gestion)
+        elif opcion == '6':
             sys.exit()

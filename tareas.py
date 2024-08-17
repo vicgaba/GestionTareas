@@ -168,11 +168,25 @@ class GestionTareas:
     
         print("-----------------------------------------------------------------------------")
 
-    def eliminar_tarea(self, descripcion):
+    def eliminar_tarea(self, id):
+        try:
+            datos = self.leer_datos()
+            if str(id) in datos.keys():
+                datos.pop(str(id))
+                self.guardar_datos(datos)
+                print(f"Tarea con id '{id}' eliminada correctamente.")
+            else:
+                print(f"No se encontró la tarea con id: {id}.")
+        except Exception as error:
+            print(f"Error al eliminar la tarea: {error}")
+
+    def modificar_estado_tarea(self, id, estado):
         datos = self.leer_datos()
-        datos_filtrados = [tarea for tarea in datos if tarea["descripcion"] != descripcion]
-        if len(datos_filtrados) == len(datos):
-            print(f"No se encontró una tarea con la descripción '{descripcion}'.")
+        if str(id) in datos.keys():
+            tarea = datos[str(id)]
+            if estado:
+                tarea['estado'] = estado
+            self.guardar_datos(datos)
+            print(f"Tarea con id '{id}' modificada correctamente.")
         else:
-            self.guardar_datos(datos_filtrados)
-            print(f"Tarea con descripción '{descripcion}' eliminada correctamente.")
+            print(f"No se encontró la tarea con id: {id}.")
