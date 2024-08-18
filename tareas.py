@@ -58,7 +58,7 @@ class Tarea:
         return id
     
     def validar_estado(self, estado):
-        if estado not in ["pendiente", "en progreso", "completada"]:
+        if estado not in ["1", "2", "3"]:
             raise ValueError("Estado inválido. Debe ser 'pendiente', 'en progreso' o 'completada'.")
         return estado
     
@@ -162,9 +162,17 @@ class GestionTareas:
         else:
             for tarea in datos.values():
                 if 'fecha_vencimiento' in tarea:
-                    print(tarea['id'] + ' ' + tarea['titulo'] + ' ' + tarea['descripcion'] + ' ' + tarea['fecha_ingreso'] + ' ' + tarea['fecha_vencimiento'] + ' ' + tarea['estado'])
+                    match tarea['estado']:
+                        case '1':
+                            estado = 'Pendiente'
+                        case '2':
+                            estado = 'En Progreso'
+                        case '3':
+                            estado = 'Completada'
+                    
+                    print(tarea['id'] + ' ' + tarea['titulo'] + ' ' + tarea['descripcion'] + ' ' + tarea['fecha_ingreso'] + ' ' + tarea['fecha_vencimiento'] + ' ' + estado)
                 else:
-                    print(tarea['id'] + ' ' + tarea['titulo'] + ' ' + tarea['descripcion'] + ' ' + tarea['fecha_ingreso'] + ' ' + tarea['frecuencia'] + ' ' + tarea['estado'])
+                    print(tarea['id'] + ' ' + tarea['titulo'] + ' ' + tarea['descripcion'] + ' ' + tarea['fecha_ingreso'] + ' ' + tarea['frecuencia'] + ' ' + estado)
     
         print("-----------------------------------------------------------------------------")
 

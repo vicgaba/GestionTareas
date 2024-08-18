@@ -1,18 +1,10 @@
 {
     "1": {
         "id": "1",
-        "titulo": "1",
-        "descripcion": "1",
-        "fecha_ingreso": "2024-08-04",
-        "fecha_vencimiento": "2024-08-05",
-        "estado": "pendiente"
-    },
-    "2": {
-        "id": "2",
-        "titulo": "2",
-        "descripcion": "2",
-        "fecha_ingreso": "2024-08-05",
-        "estado": "en progreso",
-        "fecha_vencimiento": "2024-08-06"
+        "titulo": "Tarea 1",
+        "descripcion": "Descripci\u00f3n 1",
+        "fecha_ingreso": "2024-08-15",
+        "estado": "1",
+        "fecha_vencimiento": "2024-08-18"
     }
 }
